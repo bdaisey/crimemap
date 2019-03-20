@@ -4,6 +4,7 @@
 <meta charset='utf-8' />
 <title>Display a map</title>
 <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
 <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.1/mapbox-gl.js'></script>
 <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.1/mapbox-gl.css' rel='stylesheet' />
 <style>
@@ -15,6 +16,16 @@ body { margin:0; padding:0; }
 
 <div id='map'></div>
 <script>
+
+// ajax call with jquery to load geojson of crime locations
+var crimelocs = $.ajax({
+  url: 'dataset_2k.json',
+  dataType: 'json',
+  success: console.log("Crime locations successfully loaded!"),
+  error: function(xhr) {
+    alert(xhr.statusText)
+  }
+})
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiYmRhaXNleSIsImEiOiJjamMxMjdieDEwMXA0MnFvOTBwc3BzaDdlIn0.5SxQWde6wFYzvqiPI0573w';
 
@@ -31,8 +42,7 @@ map.on('load', function() {
     'type': 'symbol',
     'source': {
       'type': 'geojson',
-      // 'data': '../dataset_2k.json',
-      'data': 'https://github.com/bdaisey/crimemap/blob/master/dataset_2k.json'
+      'data': crimelocs
     },
     'layout': {
       'visibility': 'visible',
