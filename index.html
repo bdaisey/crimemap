@@ -19,12 +19,10 @@ body { margin:0; padding:0; }
 
 // ajax call with jquery to load geojson of crime locations
 var crimelocs = $.ajax({
-  url: 'dataset_2k.json',
+  url: 'dataset_2k.geojson',
   dataType: 'json',
   success: console.log("Crime locations successfully loaded!"),
-  error: function(xhr) {
-    alert(xhr.statusText)
-  }
+  error: console.log("Ajax call failed")
 })
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiYmRhaXNleSIsImEiOiJjamMxMjdieDEwMXA0MnFvOTBwc3BzaDdlIn0.5SxQWde6wFYzvqiPI0573w';
