@@ -25,6 +25,8 @@ var crimelocs = $.ajax({
   error: console.log("Ajax call failed")
 })
 
+var crimelocsJSON = crimelocs.responseJSON
+
 mapboxgl.accessToken = 'pk.eyJ1IjoiYmRhaXNleSIsImEiOiJjamMxMjdieDEwMXA0MnFvOTBwc3BzaDdlIn0.5SxQWde6wFYzvqiPI0573w';
 
 var map = new mapboxgl.Map({
@@ -40,7 +42,7 @@ map.on('load', function() {
     'type': 'symbol',
     'source': {
       'type': 'geojson',
-      'data': crimelocs
+      'data': crimelocsJSON
     },
     'layout': {
       'visibility': 'visible',
